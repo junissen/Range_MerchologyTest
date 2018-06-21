@@ -25,9 +25,11 @@ class ImageSlider extends Component {
     componentDidMount = () => {
         let frontLogoWidth = Math.floor($('.logo-div-front').width())
         let backLogoWidth = Math.floor($('.logo-div-back').width()) 
-        this.setState({frontWidth: frontLogoWidth})
-        this.setState({backWidth: backLogoWidth})
-        window.addEventListener("resize", this.updateDimensions);
+        this.setState({frontWidth: frontLogoWidth}, function() {
+            this.setState({backWidth: backLogoWidth}, function(){
+                window.addEventListener("resize", this.updateDimensions);
+            })
+        })
     }
 
     componentWillMount = () => {
