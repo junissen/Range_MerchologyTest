@@ -2,7 +2,6 @@
   "name": "range",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://junissen.github.io/Range_MerchologyTest/",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
@@ -11,7 +10,6 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
-    "serve": "^9.1.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
