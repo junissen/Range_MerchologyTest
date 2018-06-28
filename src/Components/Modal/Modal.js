@@ -26,6 +26,7 @@ class Modal extends Component {
     }
 
     submitFunction = () => {
+        // Create a unique tag identifer for photo and grab appropriate location from user input
         let tagInput = (Math.floor(Math.random() * 10000) + 10000).toString().substring(1)
         let locationForm = $('#location').val()
         let locationInput = ""
@@ -38,6 +39,7 @@ class Modal extends Component {
             locationInput = "back"
         }
 
+        // set local state of tag and location and then update parent states. Close modal
         this.setState({tag: tagInput}, function () {
             this.props.addImage("tag", this.state.tag)
             this.setState({location: locationInput}, function() {

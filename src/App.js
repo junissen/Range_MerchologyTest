@@ -3,6 +3,7 @@ import './App.css';
 import ImageSlider from "./Components/ImageSlider";
 
 class App extends Component {
+  // Render parent app component
   render() {
     return (
       <div className="App">

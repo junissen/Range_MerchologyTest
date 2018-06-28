@@ -22,6 +22,8 @@ class ImageSlider extends Component {
         backWidth: 0
     }
 
+    // On component mount, determines width front and back logo divs and sets them in state
+    // Adds event listener for window resizer to update dimensions of front and back logo divs
     componentDidMount = () => {
         let frontLogoWidth = Math.floor($('.logo-div-front').width())
         let backLogoWidth = Math.floor($('.logo-div-back').width()) 
@@ -32,14 +34,12 @@ class ImageSlider extends Component {
         })
     }
 
-    componentWillMount = () => {
-        this.updateDimensions()
-    }
-
+    // If component is unmounted from the DOM, removes event listener
     componentWillUnmount = () => {
         window.removeEventListener("resize", this.updateDimensions)
     }
 
+    // determines width of front and back logo divs and sets them in state
     updateDimensions = () => {
         let frontLogoWidth = Math.floor($('.logo-div-front').width())
         let backLogoWidth = Math.floor($('.logo-div-back').width()) 
@@ -50,18 +50,21 @@ class ImageSlider extends Component {
         })
     }
 
+    // changes state to indicate that the modal is open
     openModal = () => {
         this.setState({isModalOpen: true})
     }
 
+    // closes modal, double checks tag, and runs uploadWidget() function
     closeModal = () => {
         this.setState({isModalOpen: false})
         console.log("IMAGE TAG")
         console.log(this.state.tag)
         this.uploadWidget()
-        
     }
 
+    // uploads image using cloudinary default widget, pulling image with state tag variable
+    // if an image is properly loaded, runs loadImage() function
     uploadWidget = () => {
         let self = this
         window.cloudinary.openUploadWidget({ cloud_name: 'djadqbynq', upload_preset: 'jctyccsn', tags:[self.state.tag]},
@@ -75,6 +78,7 @@ class ImageSlider extends Component {
             });
     }
 
+    // pulls tagged image from cloudinary database and saves in state gallery array
     loadImage = () => {
         this.setState({gallery: []})
         let searchString = 'https://res.cloudinary.com/djadqbynq/image/list/' + this.state.tag + '.json'
@@ -86,10 +90,12 @@ class ImageSlider extends Component {
         });
     }
 
+    // updates value of specified state field
     componentChange = (field, value) => {
         this.setState({[field]: value})
     }
 
+    // Render function
     render() {
         return (
 
